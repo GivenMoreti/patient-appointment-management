@@ -1,5 +1,37 @@
 {% extends "appointment/base.html" %}
 
 {% block content %}
+{% if user.is_authenticated %}
     <h1 id="heading">Hello world</h1>
+    <div class="container">
+        <table class="table">
+            <thead>
+              <tr>
+                
+                <th scope="col">Dr</th>
+                <th scope="col">Patient</th>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for a in appointment %}
+              <tr>
+                
+                <td>{{a.doctor}}</td>
+                <td>{{a.patient}}</td>
+                <td>{{a.date}}</td>
+                <td>{{a.time}}</td>
+                <td id="navigate"><input type="submit" id="cancel-appointment-btn" class="btn btn-secondary" value="cancel"></td>
+              </tr>
+             {% endfor %}
+             
+            </tbody>
+          </table>
+
+    </div>
+    {%else%}
+    <h1>not authenticated</h1>
+    {%endif%}
 {% endblock%}
